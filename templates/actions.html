@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn-link">< Предметы</a>
+    </div>
+    <h1>Журнал действий</h1>
+
+    <form method="GET" action="{{ url_for('actions') }}" class="search-form">
+        <input type="text" name="search" placeholder="Поиск по деталям..." value="{{ request.args.get('search', '') }}">
+        <button type="submit">Поиск</button>
+    </form>
+
+
+    <table class="styled-table">
+    <thead>
+        <tr>
+        <th>ID</th>
+            <th>Пользователь</th>
+            <th>Время</th>
+            <th>Целевая таблица</th>
+            <th>Детали</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for log in action_logs %}
+                <tr>
+                    <td>{{ log['id'] }}</td>
+                    <td>{{ log['user_login'] }}</td>
+                    <td>{{ log['timestamp'] }}</td>
+                    <td>{{ log['target_table'] }}</td>
+                    <td>{{ log['details'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

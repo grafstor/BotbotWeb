@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <a href="{{ url_for('assignment_page', assignment_id=assignment_id) }}" class="btn btn-primary">Вернуться к заданию</a>
+        <h1>Статистика по заданию: {{ assignment_name }}</h1>
+
+        {% if stat_questions %}
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                    <th>#</th>
+                    <th>Вопрос</th>
+                    <th>Статистика</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for question in stat_questions %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ question['question_text'] }}</td>
+                            <td>{{ question['stat']|round }}%</td>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Нет данных для отображения статистики.</p>
+        {% endif %}
+
+{% endblock %}

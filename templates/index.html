@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Предметы</h1>
+    <div class="actions">
+        <a href="{{ url_for('add_subject') }}" class="btn-link">+ Добавить предмет</a>
+        {% if role == 'админ' %}
+            <a href="{{ url_for('users') }}" class="btn-link">Пользователи</a>
+            <a href="{{ url_for('actions') }}" class="btn-link">Журнал действий</a>
+            <a href="{{ url_for('question_history') }}" class="btn-link">Журнал ответов</a>
+        {% endif %}
+        <span style="color: #4992FF;">{{ username }}</span>
+        <a href="{{ url_for('logout') }}" class="btn-link">Выйти</a>
+    </div>
+    <!-- <h2 style="opacity: 0;">Задания</h2> -->
+    <div class="subjects-list">
+        {% for subject in subjects %}
+            <a href="{{ url_for('subject_page', subject_id=subject['id']) }}" class="card">
+                <h2>{{ subject['name'] }}</h2>
+                <p>{{ subject['description'] }}</p>
+                <p>{{ subject['openness'] }}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

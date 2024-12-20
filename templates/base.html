@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botbot</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 23px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 75px 94px;
+            gap: 20px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+    .container {
+        padding: 36px 27px;
+    }
+}
+        h1 {
+            font-weight: 700;
+            font-size: 34px;
+            margin-bottom: 20px;
+            margin: 0;
+
+        }
+
+        h2 {
+            font-weight: 700;
+            font-size: 43px;
+            margin-bottom: 20px;
+            margin: 0;
+
+        }
+        p {
+            font-size: 23px;
+            margin: 0;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input[type="text"], input[type="password"] {
+            border: 1px solid black;
+            border-radius: 36px;
+            padding: 30px;
+            font-size: 23px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content {
+            flex-grow: 1;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+                margin-bottom: 10px;
+        }
+
+        .actions a {
+            text-decoration: underline;
+            color: black;
+            font-size: 23px;
+/*            margin-left: 15px;*/
+        }
+        .actions button {
+            text-decoration: underline;
+            color: black;
+            font-size: 23px;
+/*            margin-left: 15px;*/
+        }
+        .actions button {
+            text-decoration: underline;
+            color: black;
+            font-size: 23px;
+/*            margin-left: 15px;*/
+                        background: none;
+            border: none;
+            color: black; 
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+        }
+        .subjects {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .subjects-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid #eeeeee;
+            border-radius: 36px;
+            padding: 34px 45px;
+            text-decoration: none;
+            color: inherit;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            background-color: #ffffff;
+        }
+        .card_button {
+            display: block;
+            flex-direction: column;
+            gap: 10px;
+            border: 1px solid #eeeeee;
+            border-radius: 36px;
+            padding: 34px 45px;
+            text-decoration: none;
+            color: inherit;
+            background-color: #ffffff;
+            width: fit-content;
+        }
+        .card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+
+                .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 23px;
+            width: 100%;
+            text-align: left;
+            border: 1px solid #eeeeee;
+        }
+
+        .styled-table thead tr {
+            background-color: #f3f3f3;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        .styled-table th, .styled-table td {
+            padding: 12px 15px;
+            border: 1px solid #eeeeee;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f9f9f9;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #eeeeee;
+        }
+
+        .styled-table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            border: 0px solid black;
+            border-radius: 36px;
+            padding: 34px 45px;
+            font-size: 23px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+/*        button:hover {
+           background-color: #C5E0FA;
+        }*/
+
+        .checkbox-wrapper {
+            display: block; 
+            margin-bottom: 15px; 
+            position: relative;
+            width: fit-content;
+        }
+
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        label {
+            display: block;
+            background-color: black;
+            color: white;
+            border-radius: 36px;
+            padding: 34px 45px;
+            font-size: 23px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+/*        label:hover {
+            background-color: #C5E0FA;
+
+        }*/
+        .button_basic {
+            background-color: #DDEDFB;
+            color: #007EEC;
+        }
+
+        input[type="checkbox"]:checked + label {
+            background-color: #007EEC; 
+            color: white; 
+            border-color: #007EEC;
+        }
+        a:hover {
+    text-decoration: none; /* Убираем подчеркивание при наведении */
+}
+        .card h2:hover {
+    text-decoration: underline; /* Убираем подчеркивание при наведении */
+}
+
+
+        .btn-link {
+            background: none;
+            border: none;
+            color: black; 
+            text-decoration: underline; 
+            cursor: pointer;
+            padding: 0;
+            font: inherit; 
+            magrin:0;
+        }
+
+        .btn-link:hover {
+            color: none; 
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

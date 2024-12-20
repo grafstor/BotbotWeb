@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Добавить задание</h1>
+    <form method="post">
+        <div for="name">Название задания:</div>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}

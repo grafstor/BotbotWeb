@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn-link">< Предметы</a>
+     </div>
+    <h1>История вопросов</h1>
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Пользователь</th>
+                <th>Время ответа</th>
+                <th>Вопрос</th>
+                <th>Правильность</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in data %}
+                <tr>
+                    <td>{{ record['user_login'] }}</td>
+                    <td>{{ record['answer_time'] }}</td>
+                    <td>{{ record['question_text'] }}</td>
+                    <td>{{ 'Правильный' if record['is_correct'] else 'Неправильный' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

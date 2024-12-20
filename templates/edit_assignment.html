@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Редактирование задания</h1>
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+<form method="post">
+    <textarea name="questions" width="370px" rows="35" cols="80">{{ raw_data }}</textarea><br>
+    <button type="submit">Сохранить</button>
+</form>
+<div class="actions">
+    <a href="{{ url_for('assignment_page', assignment_id=assignment_id) }}" class="btn-link">Назад</a>
+</div>
+{% endblock %}

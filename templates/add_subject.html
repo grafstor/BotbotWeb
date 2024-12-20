@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn-link">< Предметы</a>
+     </div>
+    <h1>Добавить предмет</h1>
+    <form method="POST">
+        <div>
+            <div for="name">Название:</div>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <div for="description">Описание:</div>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div>
+            <div for="openness">Тип:</div>
+            <select id="openness" name="openness" required>
+                <option value="публичный">Публичный</option>
+                <option value="закрытый">Закрытый</option>
+            </select>
+        </div>
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}

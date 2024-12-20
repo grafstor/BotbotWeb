@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="actions">
+    <a href="{{ url_for('subject_page', subject_id=subject['id']) }}" class="btn-link">&lt; {{ subject['name'] }}</a>
+</div>
+<h1>{{ assignment_name }}</h1>
+
+<p>Progress: {{ progress_percentage | round() }}% ({{ correct_answers }}/{{ total_answers }})</p>
+
+<div class="actions">
+    <a href="{{ url_for('statistics', assignment_id=assignment_id) }}" class="btn-link">Статистика</a>
+    <form action="{{ url_for('reset_progress', assignment_id=assignment_id) }}" class="btn-link" method="post" style="display: inline;">
+        <button type="submit" class="btn-link" onclick="return confirm('Вы уверены, что хотите очистить прогресс?');">
+            Очистить прогресс
+        </button>
+    </form>
+    {% if is_creator or role == 'админ' %}
+        <form action="{{ url_for('delete_assignment', assignment_id=assignment_id) }}" method="post" style="display:inline;">
+        <button type="submit" class="btn-link" onclick="return confirm('Вы уверены, что хотите удалить это задание?');">
+            Удалить задание
+        </button>
+        </form>
+        <a href="{{ url_for('edit_assignment', assignment_id=assignment_id) }}" class="btn-link">Редактировать</a>
+     {% endif %}
+</div>
+<!-- <h2 style="opacity: 0;">Задания</h2> -->
+{% if question %}
+    <form action="{{ url_for('assignment_page', assignment_id=assignment_id) }}" method="post">
+        <h2>{{ question['question_text']|safe }}</h2>
+        <input type="hidden" name="question_id" value="{{ question['id'] }}">
+
+        {% if answers|length == 1 or answers|selectattr('status', 'equalto', 'правильный')|list|length == 1 %}
+
+            <div class="single-answer">
+                {% for answer in answers %}
+                    <button type="submit" name="answers" value="{{ answer['id'] }}" class="btn btn-answer button_basic">
+                        {{ answer['answer_text'] }}
+                    </button>
+                {% endfor %}
+            </div>
+        {% else %}
+
+            <div class="multiple-answers">
+        {% for answer in answers %}
+        <div class="checkbox-wrapper">
+            <input type="checkbox" id="answer_{{ answer['id'] }}" name="answers" value="{{ answer['id'] }}">
+            <label for="answer_{{ answer['id'] }}" class="btn btn-answer button_basic">
+                {{ answer['answer_text'] }}
+            </label>
+        </div>
+        {% endfor %}
+
+            </div>
+            <button type="submit" class="card_button">Ответить</button>
+        {% endif %}
+    </form>
+{% endif %}
+
+
+{% if correct_answer_text %}
+    
+        {% if is_correct %}
+            <div style="color: #1FDA57;">Правильно! 🌝</div>
+        {% else %}
+            <div style="color: #DA251F;">Неправильно! 🌚</div>
+        {% endif %}
+
+        <h2>{{ correct_answer_text }}</h2>
+        <a href="{{ url_for('assignment_page', assignment_id=assignment_id) }}" 
+           class="card_button" >
+           Следующий вопрос
+        </a>
+{% endif %}
+
+
+
+{% endblock %}
